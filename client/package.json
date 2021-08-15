@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon src/"
+    "dev": "nodemon index"
   },
   "keywords": [
     "client",
     "server"
   ],
   "author": "sebscam",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  }
 }
