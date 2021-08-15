@@ -1,5 +1,9 @@
 #!/bin/bash
 declare -r SERVER_HOST_IP=('localhost' 'wenas')
+
+while :
+do
+
 for i in "${SERVER_HOST_IP[@]}"
     do        
         curl http://${i}:3000 -w ", %{http_code}"
@@ -11,4 +15,6 @@ for i in "${SERVER_HOST_IP[@]}"
         else 
         date +"%d/%m/%y#%H:%M:%S#${i}#offline">>info.log
         fi
+        
+sleep 2m
 done
