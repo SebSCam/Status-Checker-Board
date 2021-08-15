@@ -3,6 +3,9 @@ const axios = require('axios');
 const date = require('date-and-time');
 const pattern = date.compile('YYYY/MM/DD HH:mm:ss');
 const server_host = ['localhost']
+const exec = require('child_process').exec
+const lineReader = require('line-reader')
+const cors = require('cors')
 
 const app = express();
 
