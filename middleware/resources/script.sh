@@ -7,8 +7,8 @@ for i in "${SERVER_HOST_IP[@]}"
         then
         STATE="$(curl http://${i}:3000 -w#%{http_code})"
         sFileDate="$(date +"%d/%m/%y#%H:%M:%S#${i}#online")#$STATE"
-        echo $sFileDate>>log.txt
+        echo $sFileDate>>info.log
         else 
-        date +"%d/%m/%y#%H:%M:%S#${i}#offline">>log.txt
+        date +"%d/%m/%y#%H:%M:%S#${i}#offline">>info.log
         fi
 done

@@ -37,7 +37,7 @@ const myShellScript = exec('bash viewer.sh')
 
 
 
-app.get('/', (req, res) => {
+app.get('/status', (req, res) => {
     leerEstatus()
     setTimeout(function() {
         var data = JSON.stringify(answer)
