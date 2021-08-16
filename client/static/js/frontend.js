@@ -1,4 +1,6 @@
-
+var idsLabels = ['et1','et2']
+var idsButtons = ['bt1', 'bt2']
+var idsIndicators = ['ind1','ind2']
 //const axios = require('axios')
 /*
 const button = document.getElementById('buttonGetInfo')
@@ -13,14 +15,33 @@ button.addEventListener('click', () => {
 })*/
 
 async function verifyServer(){
+    var iterator = null;
     var httprq = new XMLHttpRequest();
     httprq.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(httprq.responseText)            
-            console.log(response)          
+            for (let step = 0; step < response.length; step++) {
+                iterator=response[step]
+                var arrayTemp = iterator.split('#')
+                if (arrayTemp[3]==('offline')){
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' no esta en funcionamiento'
+                    showButton(idsButtons[step])
+                    changeIndicator('r', idsIndicators[step])
+                }  else if(arrayTemp[4]==('200')){
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' esta en funcionamiento'                    
+                    changeIndicator('g', idsIndicators[step])
+                }   else {
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD'                    
+                    changeIndicator('o', idsIndicators[step])
+                }
+            }
+            /*for (x of response) {
+
+            }*/
+            //console.log(response)          
         }
       };
-    httprq.open("GET", "http://192.168.0.111:3030", true);
+    httprq.open("GET", "http://192.168.0.111:3001/status", true);
     httprq.send();
 
 
@@ -31,6 +52,20 @@ async function verifyServer(){
     }catch (error) {
         console.log(error)
     }*/
+}
+
+function showButton(idButton){
+    document.getElementById(idButton).style.display = 'block';
+}
+
+function changeIndicator(color, idIndicator){
+    if (color == 'r'){
+        document.getElementById(idIndicator).style.fill='red'
+    } else if (color == 'g'){
+        document.getElementById(idIndicator).style.fill='green'
+    } else {
+        document.getElementById(idIndicator).style.fill='orange'
+    }
 }
 
 

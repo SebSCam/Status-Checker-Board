@@ -1,11 +1,7 @@
 #!/bin/bash
-declare -r SERVER_HOST_IP=('localhost:3001/status' '172.217.15.206')
-
-while :
-do
-
+declare -r SERVER_HOST_IP=('localhost' '172.217.15.206')
 for i in "${SERVER_HOST_IP[@]}"
-    do        
+    do
         curl http://${i} -w ", %{http_code}"
         if [ $? -eq 0 ]
         then
@@ -15,6 +11,7 @@ for i in "${SERVER_HOST_IP[@]}"
         else 
         date +"%d/%m/%y#%H:%M:%S#${i}#offline">>info.log
         fi
-        
-sleep 2m
 done
+
+#!/bin/bash
+

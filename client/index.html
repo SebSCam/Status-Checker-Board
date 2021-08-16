@@ -19,20 +19,20 @@
         </center>
         <div class="container my-3">
             <center>
-            <a id="et1">El servidor 1 esta en funcionamiento</a>
+            <a id="et1">Aún no se ha analizado la conectividad con el servidor 1</a>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="50" fill="red" />
+                <circle  id="ind1" cx="60" cy="60" r="50" fill="blue" />
             </svg>
-            <button>Reiniciar servidor</button>
+            <button id="bt1"  style="display: none;">Reiniciar servidor</button>
             </center>
         </div>
         <div class="container my-3">
             <center>
-            <a id="et2">El servidor 2 esta en funcionamiento</a>
+            <a id="et2">Aún no se ha analizado la conectividad con el servidor 2</a>
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="50" fill="green" />
+                <circle id="ind2" cx="60" cy="60" r="50" fill="blue" />
             </svg>
-            <button>Reiniciar servidor</button>
+            <button id="bt2"  style="display: none;">Reiniciar servidor</button>
         </center>
         </div>
         <div class="container my-3">
@@ -40,6 +40,7 @@
             <button onclick="verifyServer()">Recargar información</button>
         </center>
         </div>
+            
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script type="text/javascript" src="./static/js/frontend.js"></script>
 

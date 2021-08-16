@@ -3,6 +3,7 @@ const axios = require('axios');
 const exec = require('child_process').exec
 const lineReader = require('line-reader')
 const cors = require('cors')
+var answer = []
 const config = {
   application: {
       cors: {
@@ -19,10 +20,10 @@ const app = express();
 //Set App
 app.set('port',process.env.PORT || 3001);
 app.use(cors(config.application.cors.server));
-app.use('/resources', require('./resources/'))
+//app.use('/resources', require('./resources/'))
 
 function readStatusLog(){
-  lineReader.eachLine('/resources/info.log', function (line) {
+  lineReader.eachLine('info.log', function (line) {
       if (answer.length >= 2) {
           answer.shift();
       }
@@ -30,7 +31,8 @@ function readStatusLog(){
   });
 }
 
-const myShellScript = exec('bash /resources/script.sh')
+//const myShellScript = exec('bash /resources/script.sh')
+const myShellScript = exec('bash script.sh')
 
   app.get('/status',(req, res)=>{
     readStatusLog();
