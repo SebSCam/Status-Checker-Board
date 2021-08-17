@@ -18,5 +18,3 @@ done
 sleep 2 
 done
 
-#!/bin/bash
-
