@@ -17,21 +17,23 @@ button.addEventListener('click', () => {
 async function verifyServer(){
     var iterator = null;
     var httprq = new XMLHttpRequest();
+    var arrayTemp = []
     httprq.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(httprq.responseText)            
             for (let step = 0; step < response.length; step++) {
                 iterator=response[step]
-                var arrayTemp = iterator.split('#')
+                arrayTemp = []
+                arrayTemp = iterator.split('#')
                 if (arrayTemp[3]==('offline')){
-                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' no esta en funcionamiento'
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' a las '+arrayTemp[1]+' no esta en funcionamiento'
                     showButton(idsButtons[step])
                     changeIndicator('r', idsIndicators[step])
                 }  else if(arrayTemp[4]==('200')){
-                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' esta en funcionamiento'                    
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' a las '+arrayTemp[1]+' esta en funcionamiento'                    
                     changeIndicator('g', idsIndicators[step])
                 }   else {
-                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD'                    
+                    document.getElementById(idsLabels[step]).innerHTML='El servidor '+arrayTemp[2]+ ' a las '+arrayTemp[1]+' esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD'                    
                     changeIndicator('o', idsIndicators[step])
                 }
             }
