@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while:
+while :
 do
 declare -r SERVER_HOST_IP=('192.168.0.111' '172.217.15.206')
 for i in "${SERVER_HOST_IP[@]}"
