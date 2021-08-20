@@ -2,7 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const exec = require('child_process').exec
 const lineReader = require('line-reader')
-const cors = require('cors')
+const cors = require('cors');
+const { json } = require('express');
 var answer = []
 const config = {
   application: {
@@ -37,11 +38,23 @@ const myShellScript = exec('bash script.sh')
   app.get('/status',(req, res)=>{
     readStatusLog();
     setTimeout(function() {
-        var data = JSON.stringify(answer)
+       // var data = JSON.stringify(answer)
         res.status(200)
-        res.send(data)
+        res.send(convertData())
+    //convertData(data)
     },4000);
   });
+
+  function convertData(){
+    var server = [];
+    for (const i in answer ) {
+       let temp = answer[i].split("#")
+       server.push({"date":temp[0],"time":temp[1]
+                    ,"host":temp[2],"status":temp[3]
+                    ,"message":temp[4],"code":temp[5]});
+    }
+    return JSON.stringify(server)
+  }
 
 //start
 app.listen(app.get('port'),()=>{
