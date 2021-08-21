@@ -7,7 +7,7 @@ const app = express();
 app.set('port',process.env.PORT || 3000);
 
 app.get('/',(req, res)=>{
-    res.sendStatus(500);
+    res.sendStatus(200);
     console.log('SERVER: I´m working :)');
 })
 
