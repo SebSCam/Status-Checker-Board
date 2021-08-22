@@ -8,7 +8,21 @@ const app = express();
 
 //Set App
 app.set('port',process.env.PORT || 3001);
-app.use(cors(config.application.cors.server));
+const config = {
+  application: {
+      cors: {
+          server: [
+              {
+                  origin: ('*'), 
+                  credentials: true
+              }
+          ]
+      }}
+}
+
+app.use(cors(
+  config.application.cors.server
+));
 
 function readStatusLog(){
   lineReader.eachLine('info.log', function (line) {
