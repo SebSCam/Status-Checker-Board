@@ -30,11 +30,13 @@ function verifyServer() {
 async function restartServerA() {
   await axios.post("http://localhost:3002/restart-server/0");
   document.getElementById(btn1).style.display = "none";
+  verifyServer()
 }
 
 async function restartServerB() {
   await axios.post("http://localhost:3002/restart-server/1");
   document.getElementById(btn2).style.display = "none";
+  verifyServer()
 }
 
 function verify(data, i) {
