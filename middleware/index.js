@@ -2,6 +2,7 @@ const express = require('express');
 const exec = require('child_process').exec
 const lineReader = require('line-reader')
 const cors = require('cors');
+const hosts = ['192.168.100.140','192.168.100.160']
 var answer = []
 
 const app = express();
@@ -42,6 +43,16 @@ const myShellScript = exec('bash script.sh')
         res.send(convertData())
     },4000);
   });
+
+  app.post('/restart/:serverid',(req, res)=>{
+    console.log("Restart en middleware")
+    restartServer(req.params.serverid);
+  })
+
+  function restartServer(serverid){
+    console.log('sshpass -p vagrant ssh vagrant@' + hosts[serverid] + ' "bash restart.sh"')
+    exec('sshpass -p vagrant ssh vagrant@' + hosts[serverid] + ' "bash restart.sh"');
+  }
 
   function convertData(){
     var server = [];
