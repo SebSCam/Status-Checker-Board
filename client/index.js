@@ -14,12 +14,13 @@ app.get('/status', (req, res) => {
 })
 
 app.post('/restart-server/:serverid',(req, res)=>{
+  console.log('client:'+ req.params.serverid)
   restartServer(req.params.serverid);
 })
 
 async function restartServer(serverid){
-  console.log("Restart en client")
-  await axios.post('http://localhost:3001/restart/serverid');
+  console.log("Restart en client"+serverid)
+  await axios.post('http://localhost:3001/restart/' + serverid);
 }
 
 async function getUser(res) {

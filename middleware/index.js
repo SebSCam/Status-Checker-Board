@@ -34,7 +34,7 @@ function readStatusLog(){
   });
 }
 
-const myShellScript = exec('bash script.sh')
+// const myShellScript = exec('bash script.sh')
 
   app.get('/status',(req, res)=>{
     readStatusLog();
@@ -45,7 +45,6 @@ const myShellScript = exec('bash script.sh')
   });
 
   app.post('/restart/:serverid',(req, res)=>{
-    console.log("Restart en middleware")
     restartServer(req.params.serverid);
   })
 

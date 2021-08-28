@@ -6,8 +6,8 @@ const button = document.getElementById("buttonGetInfo");
 const btn1 = document.getElementById("bt1");
 const btn2 = document.getElementById("bt2");
 
-btn1.addEventListener("click", restartServer(0), false);
-btn2.addEventListener("click", restartServer(1), false);
+btn1.addEventListener("click", restartServerA, false);
+btn2.addEventListener("click", restartServerB, false);
 
 function verifyServer() {
   axios
@@ -27,35 +27,39 @@ function verifyServer() {
     .then(function () {});
 }
 
-async function restartServer(idServer) {
-    await axios.post('http://localhost:3002/restart-server/idServer')
+async function restartServerA() {
+  await axios.post("http://localhost:3002/restart-server/0");
+}
+
+async function restartServerB() {
+  await axios.post("http://localhost:3002/restart-server/1");
 }
 
 function verify(data, i) {
   if (data.status == "offline") {
     document.getElementById(idsLabels[i]).innerHTML =
-      "El servidor " +
-      data.host +
-      " a las " +
-      data.time +
-      " no esta en funcionamiento";
+    "El servidor " +
+    data.host +
+    " a las " +
+    data.time +
+    " no esta en funcionamiento";
     showButton(idsButtons[i]);
     changeIndicator("r", idsIndicators[i]);
-  } else if (data.code == "200") {
-    document.getElementById(idsLabels[i]).innerHTML =
-      "El servidor " +
-      data.host +
-      " a las " +
-      data.time +
-      " esta en funcionamiento";
-    changeIndicator("g", idsIndicators[i]);
-  } else {
-    document.getElementById(idsLabels[i]).innerHTML =
-      "El servidor " +
-      data.host +
-      " a las " +
-      data.time +
-      " esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD";
+    } else if (data.code == "200") {
+        document.getElementById(idsLabels[i]).innerHTML =
+        "El servidor " +
+        data.host +
+        " a las " +
+        data.time +
+        " esta en funcionamiento";
+        changeIndicator("g", idsIndicators[i]);
+    } else {
+        document.getElementById(idsLabels[i]).innerHTML =
+        "El servidor " +
+        data.host +
+        " a las " +
+        data.time +
+        " esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD";
     changeIndicator("o", idsIndicators[i]);
   }
 }
