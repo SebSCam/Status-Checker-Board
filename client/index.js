@@ -1,7 +1,6 @@
 const express = require('express') //Crear expres
 const app = express()
 const axios = require('axios');
-const { restart } = require('nodemon');
 
 app.use("/static", express.static("static"))
 

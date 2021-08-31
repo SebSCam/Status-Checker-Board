@@ -29,7 +29,6 @@ function verifyServer() {
 
 async function restartServerA() {
   await axios.post("http://localhost:3002/restart-server/0");
-  document.getElementById(btn1).style.display = "none";
   hideButton(btn1);
   verifyServer()
 }
