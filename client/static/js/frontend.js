@@ -30,12 +30,13 @@ function verifyServer() {
 async function restartServerA() {
   await axios.post("http://localhost:3002/restart-server/0");
   document.getElementById(btn1).style.display = "none";
+  hideButton(btn1);
   verifyServer()
 }
 
 async function restartServerB() {
   await axios.post("http://localhost:3002/restart-server/1");
-  document.getElementById(btn2).style.display = "none";
+  hideButton(bt2);
   verifyServer()
 }
 
@@ -50,6 +51,7 @@ function verify(data, i) {
     showButton(idsButtons[i]);
     changeIndicator("r", idsIndicators[i]);
     } else if (data.code == "200") {
+      hideButton(idsButtons[i]);
         document.getElementById(idsLabels[i]).innerHTML =
         "El servidor " +
         data.host +
@@ -66,6 +68,10 @@ function verify(data, i) {
         " esta en funcionamiento con estado de error";
     changeIndicator("o", idsIndicators[i]);
   }
+}
+
+function hideButton(idButton){
+  document.getElementById(idButton).style.display = "none";
 }
 
 function showButton(idButton) {
