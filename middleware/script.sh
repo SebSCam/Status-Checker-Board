@@ -14,5 +14,5 @@ do
             date +"%d/%m/%y#%H:%M:%S#${i}#offline">>info.log
         fi
     done
-sleep 10
+sleep 1
 done

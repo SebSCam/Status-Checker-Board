@@ -34,7 +34,7 @@ function readStatusLog(){
   });
 }
 
-// const myShellScript = exec('bash script.sh')
+const myShellScript = exec('bash script.sh')
 
   app.get('/status',(req, res)=>{
     readStatusLog();

@@ -63,7 +63,7 @@ function verify(data, i) {
         data.host +
         " a las " +
         data.time +
-        " esta en funcionamiento pero es un caso especial que no recuerdo jajaj XD";
+        " esta en funcionamiento con estado de error";
     changeIndicator("o", idsIndicators[i]);
   }
 }
